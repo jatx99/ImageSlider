@@ -14,6 +14,12 @@ function initializeSlider(): void{
 
 function showSlide(index: number): void{
 
+    if(index >= slides.length)    {
+        slideIndex = 0;
+    }   else if(index < 0) {
+        slideIndex = slides.length - 1;
+    }
+
     slides.forEach(slide => {
         slide.classList.remove("displaySlide");
     })
@@ -23,9 +29,14 @@ function showSlide(index: number): void{
 
 function prevSlide(): void{
 
+    clearInterval(intervalId);
+    slideIndex--;
+    showSlide(slideIndex);
+
 }
 
 function nextSlide(): void{
+
     slideIndex++;
     showSlide(slideIndex);
 }
